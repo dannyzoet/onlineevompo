@@ -1,0 +1,130 @@
+#VRML_SIM V6.0 utf8
+WorldInfo {
+  info [
+    "Epuck arena"
+    "Author: D Zoetmelk"
+    "Date: 2013"
+  ]
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation 0.552809 0.643225 0.529777 4.26327
+  position -0.632087 0.509208 -0.234485
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
+DEF FLOOR Solid {
+  children [
+    DEF FLOOR_SHAPE Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.42 0.73 0.44
+        }
+      }
+      geometry Plane {
+        size 1.3 0.6
+      }
+    }
+  ]
+  boundingObject USE FLOOR_SHAPE
+  locked TRUE
+}
+Solid {
+  translation 0.280056 0.05 0.0406096
+  children [
+    Shape {
+      geometry DEF BOX_GEO2 Box {
+        size 0.1 0.1 0.2
+      }
+    }
+  ]
+  boundingObject USE BOX_GEO2
+}
+Supervisor {
+  children [
+    Receiver {
+      channel 1
+      baudRate 115200
+    }
+    Emitter {
+      baudRate 115200
+    }
+  ]
+  controller "supervisor"
+}
+DEF epuck1 EPuck {
+  translation -0.599293 -3.19002e-05 -0.227401
+  rotation -0.001764 0.999998 -0.001324 -1.5708
+  controller "speed"
+}
+Solid {
+  translation -0.368038 0.05 -0.0794033
+  children [
+    Shape {
+      geometry DEF BOX_GEO Box {
+        size 0.2 0.1 0.1
+      }
+    }
+  ]
+  boundingObject USE BOX_GEO
+}
+Solid {
+  translation -0.0459283 0.05 0.136241
+  children [
+    Shape {
+      geometry DEF BOX_GEO3 Box {
+        size 0.05 0.1 0.3
+      }
+    }
+  ]
+  boundingObject USE BOX_GEO3
+}
+PointLight {
+  ambientIntensity 0.2
+  location 0 0.899999 0
+}
+PointLight {
+  ambientIntensity 0.2
+  location 0 -0.17 0
+}
+DEF WALL_1 Solid {
+  translation 0.65 0.05 0
+  children [
+    DEF WALL_SHAPE Shape {
+      geometry Box {
+        size 0.02 0.1 0.62
+      }
+    }
+  ]
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_2 Solid {
+  translation -0.65 0.05 0
+  children [
+    USE WALL_SHAPE
+  ]
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_3 Solid {
+  translation 0 0.05 -0.3
+  rotation 0 1 0 1.5708
+  children [
+    DEF WALL_SHAPE2 Shape {
+      geometry Box {
+        size 0.02 0.1 1.3
+      }
+    }
+  ]
+  boundingObject USE WALL_SHAPE2
+}
+DEF WALL_4 Solid {
+  translation 0 0.05 0.3
+  rotation 0 1 0 1.5708
+  children [
+    USE WALL_SHAPE2
+  ]
+  boundingObject USE WALL_SHAPE2
+}
